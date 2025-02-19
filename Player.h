@@ -5,11 +5,11 @@
 
 class Player {
 public:
-	Player();
-	~Player();
+	Player() = default;
+	~Player() = default;
 
-	void Player::sortSpells();
-	void Player::learnSpell();
+	void sortSpells();
+	void learnSpell();
 	bool findSpell(std::string spell);
 
 private:
