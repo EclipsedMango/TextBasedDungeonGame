@@ -1,5 +1,7 @@
 #include "LanternItem.h"
 
+#include "Util.h"
+
 LanternItem::LanternItem(int uses, int id) {
 	this->uses = uses;
 	this->id = id;
@@ -13,6 +15,8 @@ void LanternItem::description() const {
 		"a blindingly bright lantern.",
 		"a dull old flame sits inside the lantern."
 	};
+
+	std::cout << descriptions[randomInt(0, 4)];
 }
 
 void LanternItem::use() {

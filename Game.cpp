@@ -12,4 +12,3 @@ void Game::run() {
 	Player *player = new Player;
 	player->sortSpells();
 }
-
