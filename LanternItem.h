@@ -2,15 +2,15 @@
 #include "Item.h"
 #include "Player.h"
 
-class HealthPotionItem : public Item {
+class LanternItem : public Item {
 public:
-	HealthPotionItem() = default;
-	explicit HealthPotionItem(int uses, int id);
+	LanternItem() = default;
+	explicit LanternItem(int uses, int id);
 	void description() const override;
 	void use() override;
 	void equip(Player player);
 
-	bool used = false;
+	bool turnedOn = false;
 	int uses = 0;
 	int id = 0;
 };
