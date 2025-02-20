@@ -4,7 +4,7 @@ class Item
 {
 public:
 	Item() = default;
-	~Item() = default;
+	virtual ~Item() = default;
 
 	virtual void description() const;
 	virtual void use();

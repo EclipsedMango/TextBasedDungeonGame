@@ -3,6 +3,8 @@
 #include <vector>
 #include <iostream>
 
+#include "Item.h"
+
 class Player {
 public:
 	Player() = default;
@@ -11,6 +13,8 @@ public:
 	void sortSpells();
 	void learnSpell();
 	bool findSpell(std::string spell);
+
+	std::vector<Item> inventory = {};
 
 private:
 	std::vector<std::string> spells;

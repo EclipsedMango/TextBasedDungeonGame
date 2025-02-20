@@ -1,5 +1,6 @@
 #include "SwordItem.h"
 
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -25,10 +26,10 @@ void SwordItem::description() const {
 }
 
 void SwordItem::use() {
-
+	uses = std::max(uses - 1, 0);
 }
 
-void SwordItem::equip() {
-
+void SwordItem::equip(Player player) {
+	player.inventory.push_back(*this);
 }
 
