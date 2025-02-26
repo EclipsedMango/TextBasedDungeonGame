@@ -2,11 +2,6 @@
 
 #include "Util.h"
 
-LanternItem::LanternItem(int uses, int id) {
-	this->uses = uses;
-	this->id = id;
-}
-
 void LanternItem::description() const {
 	std::vector<std::string> descriptions{
 		"a rust but reliable lantern.",

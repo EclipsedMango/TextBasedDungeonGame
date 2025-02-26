@@ -3,12 +3,16 @@
 #include "Item.h"
 
 class Room {
-	Room(std::string description, Item *item);
-	virtual ~Room() = default;
+public:
+	Room() = default;
+	Room(std::string description, Item* item);
+	virtual ~Room();
 
-	void enterRoom();
 	void Description() const;
+	void setDescription(std::string descript);
 
-	Item *item = new Item;
-	std::string description;
+	Item* item;
+
+private:
+	std::string descrip;
 };

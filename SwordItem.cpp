@@ -7,12 +7,6 @@
 
 #include "Util.h"
 
-SwordItem::SwordItem(int damage, int uses, int id) {
-	this->damage = damage;
-	this->uses = uses;
-	this->id = id;
-}
-
 void SwordItem::description() const {
 	std::vector<std::string> descriptions = {
 		"a rusty	steel sword.",

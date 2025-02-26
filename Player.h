@@ -15,6 +15,11 @@ public:
 	bool findSpell(std::string spell);
 
 	std::vector<Item> inventory = {};
+	int healthPoints = 20;
+	int baseDamage = 2;
+	int level = 1;
+	int gold = 0;
+	int movesRemaining = 10;
 
 private:
 	std::vector<std::string> spells;

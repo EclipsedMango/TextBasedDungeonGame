@@ -2,11 +2,6 @@
 
 #include "Util.h"
 
-HealthPotionItem::HealthPotionItem(int uses, int id) {
-	this->uses = uses;
-	this->id = id;
-}
-
 void HealthPotionItem::description() const {
 	std::vector<std::string> descriptions = {
 		"an old potent health potion.",
