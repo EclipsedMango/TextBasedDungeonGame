@@ -12,6 +12,7 @@ public:
 	void setDescription(std::string descript);
 
 	Item* item;
+	bool playerHasVisited = false;
 
 private:
 	std::string descrip;

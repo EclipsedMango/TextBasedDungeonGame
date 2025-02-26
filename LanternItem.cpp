@@ -4,14 +4,14 @@
 
 void LanternItem::description() const {
 	std::vector<std::string> descriptions{
-		"a rust but reliable lantern.",
+		"a rusty but reliable lantern.",
 		"an old bright lantern.",
 		"a hand held lantern.",
 		"a blindingly bright lantern.",
 		"a dull old flame sits inside the lantern."
 	};
 
-	std::cout << descriptions[randomInt(0, 4)];
+	std::cout << descriptions[randomInt(0, 4)] << "\n";
 }
 
 void LanternItem::use() {

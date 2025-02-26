@@ -41,14 +41,65 @@ void Game::run() {
 		<< "\nHP: " << player->healthPoints
 		<< "\nDamage: " << player->baseDamage << "\n";
 
-	std::cout << "\n";
-
 	while (reply == "play") {
-		std::cout << "Type N, E, S, W to move in a direction.\n";
-		std::string moveReply;
-		std::cin >> moveReply;
+		std::cout << "\n" << "Choose an action to do. type 1 to Move, type 2 to Use an Item, type 3 to attack.\n";
+		std::string playerDecision;
+		std::cin >> playerDecision;
+		std::cout << "\n";
+
+		if (playerDecision == "1") {
+			moveTurn();
+		}
+
+		if (playerDecision == "2") {}
+
+		if (playerDecision == "3") {}
 	}
 
 
 	delete player;
 }
+
+void Game::moveTurn() {
+	while (true) {
+		std::cout << "Type N, E, S, W to move in that direction. or C to cancel\n";
+		std::string playerMove;
+		std::cin >> playerMove;
+		std::cout << "\n";
+
+		if (playerMove == "N") {
+			playerPos.y += 1;
+			break;
+		}
+
+		if (playerMove == "E") {
+			playerPos.x += 1;
+			break;
+		}
+
+		if (playerMove == "S") {
+			playerPos.y -= 1;
+			break;
+		}
+
+		if (playerMove == "W") {
+			playerPos.x -= 1;
+			break;
+		}
+
+		if (playerMove == "C") {break;}
+	}
+
+	std::cout << "Your new position is: " << playerPos.x << " " << playerPos.y << "\n";
+	rooms[playerPos.x][playerPos.y].Description();
+}
+
+void Game::useTurn() {
+
+}
+
+void Game::attackTurn() {
+
+}
+
+

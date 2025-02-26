@@ -5,6 +5,11 @@
 
 #include "Item.h"
 
+inline struct {
+	int x;
+	int y;
+} playerPos;
+
 class Player {
 public:
 	Player() = default;
@@ -20,6 +25,8 @@ public:
 	int level = 1;
 	int gold = 0;
 	int movesRemaining = 10;
+
+	
 
 private:
 	std::vector<std::string> spells;

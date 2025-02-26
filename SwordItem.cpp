@@ -16,7 +16,7 @@ void SwordItem::description() const {
 		"a long sword."
 	};
 
-	std::cout << descriptions[randomInt(0, 4)];
+	std::cout << descriptions[randomInt(0, 4)] << "\n";
 }
 
 void SwordItem::use() {

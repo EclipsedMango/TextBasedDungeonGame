@@ -11,7 +11,7 @@ void HealthPotionItem::description() const {
 		"a clean health potion"
 	};
 
-	std::cout << descriptions[randomInt(0, 4)];
+	std::cout << descriptions[randomInt(0, 4)] << "\n";
 }
 
 void HealthPotionItem::use() {
