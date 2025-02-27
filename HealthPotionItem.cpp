@@ -6,7 +6,7 @@
 
 HealthPotionItem::HealthPotionItem() {
 	this->id = randomInt(0, 10000);
-	this->name = "Health Potion";
+	this->name = "health potion";
 	this->uses = 1;
 }
 

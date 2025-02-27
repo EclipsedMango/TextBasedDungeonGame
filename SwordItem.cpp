@@ -9,14 +9,14 @@
 
 SwordItem::SwordItem() {
 	this->id = randomInt(0, 10000);
-	this->name = "Sword";
+	this->name = "sword";
 	this->uses = randomInt(2, 5);
 }
 
 
 void SwordItem::description() const {
 	std::vector<std::string> descriptions = {
-		"a rusty	steel sword.",
+		"a rusty steel sword.",
 		"an old knights sword.",
 		"an average looking sword.",
 		"a dull but large sword.",

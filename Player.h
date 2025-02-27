@@ -19,7 +19,7 @@ public:
 	void learnSpell();
 	bool findSpell(std::string spell);
 
-	std::vector<Item> inventory;
+	std::vector<Item*> inventory;
 
 	int healthPoints = 20;
 	int baseDamage = 2;

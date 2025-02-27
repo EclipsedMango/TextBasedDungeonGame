@@ -41,7 +41,7 @@ void Game::run() {
 		<< "\nDamage: " << player->baseDamage << "\n";
 
 	while (reply == "play") {
-		std::cout << "\n" << "Choose an action to do. type 1 to Move, type 2 to Use an Item, type 3 to attack.\n";
+		std::cout << "\n" << "Choose an action to do. type 1 to Move, type 2 to Use an Item.\n";
 		std::string playerDecision;
 		std::cin >> playerDecision;
 		std::cout << "\n";
@@ -50,9 +50,9 @@ void Game::run() {
 			moveTurn();
 		}
 
-		if (playerDecision == "2") {}
-
-		if (playerDecision == "3") {}
+		if (playerDecision == "2") {
+			useTurn();
+		}
 	}
 
 
@@ -91,9 +91,13 @@ void Game::moveTurn() {
 
 	std::cout << "Your new position is: " << playerPos.x << " " << playerPos.y << "\n";
 
+	if (player->inventory.empty()) {
+		player->inventory.push_back(rooms[playerPos.x][playerPos.y].item);
+	} 
+
 	for (size_t i = 0; i < player->inventory.size(); ++i) {
-		if (player->inventory[i].id != rooms[playerPos.x][playerPos.y].item->id) {
-			player->inventory.push_back(*rooms[playerPos.x][playerPos.y].item);
+		if (player->inventory[i]->id != rooms[playerPos.x][playerPos.y].item->id) {
+			player->inventory.push_back(rooms[playerPos.x][playerPos.y].item);
 		}
 	}
 
@@ -106,25 +110,19 @@ void Game::useTurn() {
 		std::string playerDecision;
 		std::cin >> playerDecision;
 
-		bool itemExists = false;
-
 		if (playerDecision == "C" || playerDecision == "c") { return; }
 
 		for (size_t i = 0; i < player->inventory.size(); ++i) {
-			if (playerDecision == player->inventory[i].name) {
-				player->inventory[i].use();
-				if (player->inventory[i].uses == 0) {
+			if (playerDecision == player->inventory[i]->name) {
+				player->inventory[i]->use();
+				if (player->inventory[i]->uses == 0) {
 					player->inventory.erase(player->inventory.begin() + i);
 				}
-				itemExists = true;
-				break;
+				return;
 			}
 		}
 
-		if (!itemExists) {
-			std::cout << "You don't have that item!\n";
-			return;
-		}
+		std::cout << "You don't have that item!\n";
 	}
 }
 

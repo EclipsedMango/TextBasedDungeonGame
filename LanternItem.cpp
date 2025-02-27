@@ -4,7 +4,7 @@
 
 LanternItem::LanternItem() {
 	this->id = randomInt(0, 10000);
-	this->name = "Lantern";
+	this->name = "lantern";
 	this->uses = randomInt(1, 4);
 }
 
