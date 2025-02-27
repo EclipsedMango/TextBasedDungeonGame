@@ -6,8 +6,8 @@
 #include "Item.h"
 
 inline struct {
-	int x;
-	int y;
+	int x = 5;
+	int y = 5;
 } playerPos;
 
 class Player {

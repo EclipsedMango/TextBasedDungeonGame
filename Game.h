@@ -13,11 +13,15 @@ public:
 	void run();
 	void moveTurn();
 	void useTurn();
+	void drawMap();
 
 	Game();
 	~Game();
 private:
-	Room rooms[10][10] = {};
+	static const int roomRows = 11;
+	static const int roomColumn = 11;
+
+	Room rooms[roomRows][roomColumn] = {};
 	Player* player;
 
 	std::vector<std::string> descriptions = {

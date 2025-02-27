@@ -15,11 +15,10 @@ Room::~Room() {
 
 void Room::Description() const {
 	std::cout << descrip;
-	int spawnItemNum = randomInt(1, 3);
 
 	std::cout << "You found ";
 
-	if (item != nullptr && spawnItemNum != 3) {
+	if (item != nullptr) {
 		item->description();
 	}
 	else {
