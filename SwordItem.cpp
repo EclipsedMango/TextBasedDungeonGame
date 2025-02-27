@@ -7,6 +7,11 @@
 
 #include "Util.h"
 
+SwordItem::SwordItem() {
+	this->id = randomInt(0, 10000);
+}
+
+
 void SwordItem::description() const {
 	std::vector<std::string> descriptions = {
 		"a rusty	steel sword.",
@@ -21,9 +26,5 @@ void SwordItem::description() const {
 
 void SwordItem::use() {
 	uses = std::max(uses - 1, 0);
-}
-
-void SwordItem::equip(Player player) {
-	player.inventory.push_back(*this);
 }
 

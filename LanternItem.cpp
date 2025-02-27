@@ -2,6 +2,10 @@
 
 #include "Util.h"
 
+LanternItem::LanternItem() {
+	this->id = randomInt(0, 10000);
+}
+
 void LanternItem::description() const {
 	std::vector<std::string> descriptions{
 		"a rusty but reliable lantern.",
@@ -20,8 +24,4 @@ void LanternItem::use() {
 	if (turnedOn) {
 		std::cout << "The room brightens as you hold the lantern up.\n";
 	}
-}
-
-void LanternItem::equip(Player player) {
-	player.inventory.push_back(*this);
 }

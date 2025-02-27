@@ -20,7 +20,6 @@ Game::Game() {
 
 Game::~Game() {
 	delete player;
-	delete[] rooms;
 }
 
 void Game::run() {
@@ -91,6 +90,13 @@ void Game::moveTurn() {
 	}
 
 	std::cout << "Your new position is: " << playerPos.x << " " << playerPos.y << "\n";
+
+	for (size_t i = 0; i < player->inventory.size(); ++i) {
+		if (player->inventory[i].id != rooms[playerPos.x][playerPos.y].item->id) {
+			player->inventory.push_back(*rooms[playerPos.x][playerPos.y].item);
+		}
+	}
+
 	rooms[playerPos.x][playerPos.y].Description();
 }
 

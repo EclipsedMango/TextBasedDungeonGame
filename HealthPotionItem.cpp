@@ -1,6 +1,12 @@
 #include "HealthPotionItem.h"
 
+#include <iostream>
+
 #include "Util.h"
+
+HealthPotionItem::HealthPotionItem() {
+	this->id = randomInt(0, 10000);
+}
 
 void HealthPotionItem::description() const {
 	std::vector<std::string> descriptions = {
@@ -16,8 +22,4 @@ void HealthPotionItem::description() const {
 
 void HealthPotionItem::use() {
 	used = true;
-}
-
-void HealthPotionItem::equip(Player player) {
-	player.inventory.push_back(*this);
 }

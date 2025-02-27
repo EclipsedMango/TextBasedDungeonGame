@@ -1,7 +1,7 @@
 #include "Room.h"
 
-#include "HealthPotionItem.h"
-#include "LanternItem.h"
+#include <iostream>
+
 #include "Util.h"
 
 Room::Room(std::string description, Item *item) {

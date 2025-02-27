@@ -1,7 +1,6 @@
 #pragma once
 
-class Item
-{
+class Item {
 public:
 	Item() = default;
 	virtual ~Item() = default;
@@ -9,6 +8,5 @@ public:
 	virtual void description() const;
 	virtual void use();
 
-private:
-
+	int id;
 };

@@ -5,10 +5,9 @@
 
 class LanternItem : public Item {
 public:
-	LanternItem() = default;
+	LanternItem();
 	void description() const override;
 	void use() override;
-	void equip(Player player);
 
 	bool turnedOn = false;
 	int uses = randomInt(1, 6);
