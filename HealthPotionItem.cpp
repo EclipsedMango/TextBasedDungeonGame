@@ -6,6 +6,8 @@
 
 HealthPotionItem::HealthPotionItem() {
 	this->id = randomInt(0, 10000);
+	this->name = "Health Potion";
+	this->uses = 1;
 }
 
 void HealthPotionItem::description() const {
@@ -21,5 +23,6 @@ void HealthPotionItem::description() const {
 }
 
 void HealthPotionItem::use() {
-	used = true;
+	uses = std::max(uses - 1, 0);
+	std::cout << "You drank a health potion\n";
 }

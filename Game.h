@@ -13,7 +13,6 @@ public:
 	void run();
 	void moveTurn();
 	void useTurn();
-	void attackTurn();
 
 	Game();
 	~Game();

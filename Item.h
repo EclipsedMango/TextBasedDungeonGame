@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class Item {
 public:
@@ -9,4 +10,6 @@ public:
 	virtual void use();
 
 	int id;
+	int uses;
+	std::string name;
 };

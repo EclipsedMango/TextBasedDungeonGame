@@ -8,5 +8,4 @@ public:
 	void use() override;
 
 	bool used = false;
-	int uses = 1;
 };

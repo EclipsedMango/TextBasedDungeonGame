@@ -9,6 +9,8 @@
 
 SwordItem::SwordItem() {
 	this->id = randomInt(0, 10000);
+	this->name = "Sword";
+	this->uses = randomInt(2, 5);
 }
 
 
@@ -26,5 +28,6 @@ void SwordItem::description() const {
 
 void SwordItem::use() {
 	uses = std::max(uses - 1, 0);
+	std::cout << "You swung the sword at a ferocious speed.\n";
 }
 

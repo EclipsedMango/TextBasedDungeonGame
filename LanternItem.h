@@ -10,5 +10,4 @@ public:
 	void use() override;
 
 	bool turnedOn = false;
-	int uses = randomInt(1, 6);
 };

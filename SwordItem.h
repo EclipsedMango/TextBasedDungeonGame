@@ -10,5 +10,4 @@ public:
 	void use() override;
 
 	int damage = randomInt(2, 6);
-	int uses = randomInt(1, 6);
 };

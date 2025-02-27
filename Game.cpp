@@ -86,7 +86,7 @@ void Game::moveTurn() {
 			break;
 		}
 
-		if (playerMove == "C") {break;}
+		if (playerMove == "C") {return;}
 	}
 
 	std::cout << "Your new position is: " << playerPos.x << " " << playerPos.y << "\n";
@@ -101,11 +101,31 @@ void Game::moveTurn() {
 }
 
 void Game::useTurn() {
+	while (true) {
+		std::cout << "\n" << "Choose an item to use (type the item): sword, health potion, or lantern. type C to cancel\n";
+		std::string playerDecision;
+		std::cin >> playerDecision;
 
-}
+		bool itemExists = false;
 
-void Game::attackTurn() {
+		if (playerDecision == "C" || playerDecision == "c") { return; }
 
+		for (size_t i = 0; i < player->inventory.size(); ++i) {
+			if (playerDecision == player->inventory[i].name) {
+				player->inventory[i].use();
+				if (player->inventory[i].uses == 0) {
+					player->inventory.erase(player->inventory.begin() + i);
+				}
+				itemExists = true;
+				break;
+			}
+		}
+
+		if (!itemExists) {
+			std::cout << "You don't have that item!\n";
+			return;
+		}
+	}
 }
 
 
