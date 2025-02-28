@@ -103,7 +103,8 @@ void Game::run() {
 		}
 
 		if (playerDecision == "6") {
-			
+			leaveDungeon();
+			return;
 		}
 	}
 
@@ -192,6 +193,24 @@ void Game::drawMap() {
 }
 
 void Game::leaveDungeon() {
+	std::cout << "You left the dungeon.\n" << "\n";
 
+	std::cout << "Statistics:\n"
+		<< "Player level: " << player->level << "\n"
+		<< "Player HP: " << player->healthPoints << "\n"
+		<< "Player Damage: " << player->baseDamage << "\n"
+		<< "Loot you left with:\n" << "\n";
+
+	if (!player->inventory.empty()) {
+		for (int i = 0; i < player->inventory.size(); ++i) {
+			std::cout << player->inventory[i]->name << "\n";
+		}
+
+	} else {
+		std::cout << "Nothing.\n";
+	}
+
+	std::cout << "\nGold you earned: " << player->gold << "\n";
+	std::cout << "GG, I hope you had fun!\n";
 }
 
