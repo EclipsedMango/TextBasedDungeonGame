@@ -41,13 +41,27 @@ void Game::run() {
 		return;
 	}
 
+	bool thingy = false;
+
+	if (reply == "play") {
+		thingy = true;
+	}
+
 	std::cout << "\n" << "These are your base stats: \nLevel: "
 		<< player->level
 		<< "\nHP: " << player->healthPoints
 		<< "\nDamage: " << player->baseDamage << "\n";
 
-	while (reply == "play") {
-		std::cout << "\n" << "Choose an action to do. type 1 to Move, type 2 to Use an Item, type 3 to see your inventory.\n";
+	while (thingy) {
+		std::cout << "\n"
+			<< "Choose an action to do. type (1, 2, 3, 4, 5, or 6).\n"
+			<< "1: Move,\n"
+			<< "2: Use Item.\n"
+			<< "3: Open Inventory.\n"
+			<< "4: Open Map.\n"
+			<< "5: Check spells.\n"
+			<< "6: Leave dungeon.\n";
+
 		std::string playerDecision;
 		std::cin >> playerDecision;
 		std::cout << "\n";
@@ -62,9 +76,11 @@ void Game::run() {
 
 		if (playerDecision == "3") {
 			if (player->inventory.empty()) {
-				std::cout << "You have nothing.\n";
-			} else {
-				for (size_t i = 0; i < player->inventory.size(); ++i) {
+				std::cout << "You have no items, explore to find some!\n";
+			}
+
+			for (int i = 0; i < player->inventory.size(); ++i) {
+				if (player->inventory[i] != nullptr) {
 					std::cout << player->inventory[i]->name << "\n";
 				}
 			}
@@ -73,8 +89,23 @@ void Game::run() {
 		if (playerDecision == "4") {
 			drawMap();
 		}
-	}
 
+		if (playerDecision == "5") {
+			std::cout << "Type a spell to see if you have it.\n";
+			std::string playerReply;
+			std::cin >> playerReply;
+
+			if (player->findSpell(playerReply)) {
+				std::cout << "You do have " << playerReply << ".\n";
+			} else {
+				std::cout << "You do not have " << playerReply << ".\n";
+			}
+		}
+
+		if (playerDecision == "6") {
+			
+		}
+	}
 
 	delete player;
 }
@@ -87,7 +118,7 @@ void Game::moveTurn() {
 		std::cout << "\n";
 
 		if (playerMove == "N" && playerPos.y < 10) {
-			playerPos.y += 1;
+			playerPos.y -= 1;
 			break;
 		}
 
@@ -97,7 +128,7 @@ void Game::moveTurn() {
 		}
 
 		if (playerMove == "S") {
-			playerPos.y -= 1;
+			playerPos.y += 1;
 			break;
 		}
 
@@ -111,12 +142,12 @@ void Game::moveTurn() {
 
 	std::cout << "Your new position is: " << playerPos.x << " " << playerPos.y << "\n";
 
-	if (player->inventory.empty()) {
+	if (player->inventory.empty() && rooms[playerPos.x][playerPos.y].item != nullptr) {
 		player->inventory.push_back(rooms[playerPos.x][playerPos.y].item);
-	} 
+	}
 
 	for (size_t i = 0; i < player->inventory.size(); ++i) {
-		if (player->inventory[i] != nullptr && player->inventory[i]->id != rooms[playerPos.x][playerPos.y].item->id) {
+		if (rooms[playerPos.x][playerPos.y].item != nullptr && player->inventory[i]->id != rooms[playerPos.x][playerPos.y].item->id) {
 			player->inventory.push_back(rooms[playerPos.x][playerPos.y].item);
 		}
 	}
@@ -126,7 +157,7 @@ void Game::moveTurn() {
 
 void Game::useTurn() {
 	while (true) {
-		std::cout << "\n" << "Choose an item to use (type the item): sword, health potion, or lantern. type C to cancel\n";
+		std::cout << "Choose an item to use (type the item): sword, health potion, or lantern. type C to cancel\n";
 		std::string playerDecision;
 		std::cin >> playerDecision;
 
@@ -147,10 +178,10 @@ void Game::useTurn() {
 }
 
 void Game::drawMap() {
-	for (int i = 0; i < roomRows; ++i) {
-		for (int j = 0; j < roomColumn; ++j) {
-			std::string out = (rooms[i][j].item == nullptr) ? "[ ]" : "[+]";
-			if (i == playerPos.x && j == playerPos.y) {
+	for (int i = 0; i < roomColumn; ++i) {
+		for (int j = 0; j < roomRows; ++j) {
+			std::string out = (rooms[j][i].item == nullptr) ? "[ ]" : "[+]";
+			if (j == playerPos.x && i == playerPos.y) {
 				out = "[X]";
 			}
 
@@ -160,4 +191,7 @@ void Game::drawMap() {
 	}
 }
 
+void Game::leaveDungeon() {
+
+}
 

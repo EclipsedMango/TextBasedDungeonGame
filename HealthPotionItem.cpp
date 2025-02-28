@@ -1,6 +1,7 @@
 #include "HealthPotionItem.h"
 
 #include <iostream>
+#include <vector>
 
 #include "Util.h"
 

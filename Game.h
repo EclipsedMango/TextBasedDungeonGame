@@ -14,6 +14,7 @@ public:
 	void moveTurn();
 	void useTurn();
 	void drawMap();
+	void leaveDungeon();
 
 	Game();
 	~Game();

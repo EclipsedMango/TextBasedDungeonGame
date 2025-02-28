@@ -28,7 +28,10 @@ public:
 	int movesRemaining = 10;
 
 private:
-	std::vector<std::string> spells;
+	std::vector<std::string> spells = {
+		"Fireball",
+		"Teleport"
+	};
 	std::vector<std::string> allSpells = {
 		"Fireball",
 		"Magic Missile",

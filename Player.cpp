@@ -7,6 +7,7 @@
 
 void Player::sortSpells() {
 	std::ranges::sort(allSpells);
+	std::ranges::sort(spells);
 }
 
 void Player::learnSpell() {
@@ -29,21 +30,16 @@ bool Player::findSpell(std::string spell) {
 
 	while (high != low) {
 		const int i = (low + high) / 2;
-		const int compareString = spell.compare(spells[i]);
+		const int compareString = strcmp(spell.c_str(), spells[i].c_str());
 
 		if (compareString == 0) {
 			return true;
 		}
 
 		if (compareString > 0) {
-			low = i;
-		}
-		else {
+			low = i + 1;
+		} else {
 			high = i;
-		}
-
-		if (high - low == 1) {
-			return false;
 		}
 	}
 
