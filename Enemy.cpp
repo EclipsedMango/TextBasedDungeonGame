@@ -8,7 +8,7 @@ void Enemy::attackPlayer(Player player) {
 	if (randomHitChance == 0) {
 		int damageDone = baseDamage + randomInt(2, 4);
 		player.healthPoints -= damageDone;
-		std::cout << "The enemy hit you for: " << damageDone << ".\n";
+		std::cout << "The attacked and landed it hit for: " << damageDone << ".\n";
 	} else {
 		std::cout << "The enemy attacked and missed.\n";
 	}
@@ -17,6 +17,6 @@ void Enemy::attackPlayer(Player player) {
 void Enemy::death(Player player) {
 	int randomGold = randomInt(5, 10) * level;
 	player.gold += randomGold;
-	std::cout << "You killed an enemy and gained " << randomGold << " Gold.";
+	std::cout << "You killed an enemy and gained " << randomGold << " Gold.\n";
 }
 

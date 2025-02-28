@@ -11,5 +11,6 @@ public:
 
 	int id;
 	int uses;
+	int damage;
 	std::string name;
 };

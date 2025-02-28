@@ -4,11 +4,12 @@
 #include <iostream>
 
 #include "Player.h"
+#include "Util.h"
 
-inline struct {
-	int x = 5;
-	int y = 5;
-} enemyPos;
+struct EnemyPos {
+	int x;
+	int y;
+};
 
 class Enemy {
 public:
@@ -21,4 +22,6 @@ public:
 	int healthPoints = 20;
 	int baseDamage = 2;
 	int level = 1;
+
+	EnemyPos enemyPos = {randomInt(1, 10), randomInt(1, 10) };
 };

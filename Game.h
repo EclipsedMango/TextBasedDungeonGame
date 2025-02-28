@@ -3,6 +3,7 @@
 #include "Player.h"
 #include <iostream>
 
+#include "Enemy.h"
 #include "HealthPotionItem.h"
 #include "LanternItem.h"
 #include "Room.h"
@@ -14,7 +15,8 @@ public:
 	void moveTurn();
 	void useTurn();
 	void drawMap();
-	void leaveDungeon();
+	void enemyEncounter(Enemy enemy);
+	void leaveDungeon(bool hasDied);
 
 	Game();
 	~Game();
@@ -24,6 +26,8 @@ private:
 
 	Room rooms[roomRows][roomColumn] = {};
 	Player* player;
+
+	std::vector<Enemy*> enemies = {};
 
 	std::vector<std::string> descriptions = {
 		"It's cold, dark, and large. Broken and old furniture litters the old room. ",

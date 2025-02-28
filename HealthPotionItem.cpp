@@ -7,8 +7,8 @@
 
 HealthPotionItem::HealthPotionItem() {
 	this->id = randomInt(0, 10000);
-	this->name = "health potion";
-	this->uses = 1;
+	this->name = "healthPotion";
+	this->uses = 2;
 }
 
 void HealthPotionItem::description() const {
