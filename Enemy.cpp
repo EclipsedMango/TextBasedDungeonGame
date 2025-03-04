@@ -2,13 +2,13 @@
 
 #include "Util.h"
 
-void Enemy::attackPlayer(Player player) {
+void Enemy::attackPlayer(Player *player) {
 	int randomHitChance = randomInt(0, 4);
 
 	if (randomHitChance == 0) {
 		int damageDone = baseDamage + randomInt(2, 4);
-		player.healthPoints -= damageDone;
-		std::cout << "The attacked and landed it hit for: " << damageDone << ".\n";
+		player->healthPoints -= damageDone;
+		std::cout << "The enemy attacked and landed it hit for: " << damageDone << ".\n";
 	} else {
 		std::cout << "The enemy attacked and missed.\n";
 	}

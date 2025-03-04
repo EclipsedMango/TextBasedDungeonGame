@@ -43,6 +43,7 @@ void Game::run() {
 	std::cout << "Type 'play' to play DungeonGameTheGame.\n";
 	std::string reply;
 	std::cin >> reply;
+	reply[0] = std::tolower(reply[0]);
 
 	if (reply != "play") {
 		std::cout << "You didn't type 'play'. Goodbye!\n";
@@ -62,14 +63,21 @@ void Game::run() {
 		<< "\nDamage: " << player->baseDamage << "\n";
 
 	while (thingy) {
+		if (player->movesRemaining <= 0) {
+			std::cout << "\nYou ran of of moves.\n";
+			leaveDungeon(false);
+			return;
+		}
+
 		std::cout << "\n"
-			<< "Choose an action to do. type (1, 2, 3, 4, 5, or 6).\n"
-			<< "1: Move,\n"
+			<< "Choose an action to do. type (1, 2, 3, 4, 5, 6, or 7).\n"
+			<< "1: Move.\n"
 			<< "2: Use Item.\n"
 			<< "3: Open Inventory.\n"
 			<< "4: Open Map.\n"
 			<< "5: Check spells.\n"
-			<< "6: Leave dungeon.\n";
+			<< "6: Shows Stats.\n"
+			<< "7: Leave dungeon.\n";
 
 		std::string playerDecision;
 		std::cin >> playerDecision;
@@ -112,6 +120,13 @@ void Game::run() {
 		}
 
 		if (playerDecision == "6") {
+			std::cout << "Statistics:\n"
+				<< "Player level: " << player->level << "\n"
+				<< "Player HP: " << player->healthPoints << "\n"
+				<< "Player Damage: " << player->baseDamage << "\n";
+		}
+
+		if (playerDecision == "7") {
 			leaveDungeon(false);
 			return;
 		}
@@ -123,29 +138,34 @@ void Game::moveTurn() {
 		std::cout << "Type N, E, S, W to move in that direction. or C to cancel\n";
 		std::string playerMove;
 		std::cin >> playerMove;
+		playerMove[0] = std::tolower(playerMove[0]);
 		std::cout << "\n";
 
-		if (playerMove == "N" && playerPos.y < 10) {
+		if (playerMove == "n" && playerPos.y < 10) {
+			player->movesRemaining -= 1;
 			playerPos.y -= 1;
 			break;
 		}
 
-		if (playerMove == "E") {
+		if (playerMove == "e" && playerPos.x < 10) {
+			player->movesRemaining -= 1;
 			playerPos.x += 1;
 			break;
 		}
 
-		if (playerMove == "S") {
+		if (playerMove == "s" && playerPos.y > 0) {
+			player->movesRemaining -= 1;
 			playerPos.y += 1;
 			break;
 		}
 
-		if (playerMove == "W") {
+		if (playerMove == "w" && playerPos.x > 0) {
+			player->movesRemaining -= 1;
 			playerPos.x -= 1;
 			break;
 		}
 
-		if (playerMove == "C") {return;}
+		if (playerMove == "c") {return;}
 	}
 
 	std::cout << "Your new position is: " << playerPos.x << " " << playerPos.y << "\n";
@@ -175,8 +195,9 @@ void Game::useTurn() {
 		std::cout << "Choose an item to use (type the item): sword, healthPotion, or lantern. type C to cancel\n";
 		std::string playerDecision;
 		std::cin >> playerDecision;
+		playerDecision[0] = std::tolower(playerDecision[0]);
 
-		if (playerDecision == "C" || playerDecision == "c") { return; }
+		if (playerDecision == "c") { return; }
 
 		for (size_t i = 0; i < player->inventory.size(); ++i) {
 			if (playerDecision == player->inventory[i]->name) {
@@ -222,14 +243,15 @@ void Game::enemyEncounter(Enemy enemy) {
 		std::cout << "\nTheres an enemy in this room! attack it or leave! (A or L).\n";
 		std::string playerResponse;
 		std::cin >> playerResponse;
+		playerResponse[0] = std::tolower(playerResponse[0]);
 
-		if (playerResponse == "L") {
-			enemy.attackPlayer(*player);
+		if (playerResponse == "l") {
+			enemy.attackPlayer(player);
 			std::cout << "You escaped.\n";
 			return;
 		}
 
-		if (playerResponse == "A") {
+		if (playerResponse == "a") {
 			attackBool = true;
 		}
 
@@ -254,7 +276,7 @@ void Game::enemyEncounter(Enemy enemy) {
 			}
 
 			enemy.healthPoints -= player->baseDamage;
-			enemy.attackPlayer(*player);
+			enemy.attackPlayer(player);
 
 			std::cout << "You attacked the enemy! its new hp is: " << enemy.healthPoints << ".\n";
 			std::cout << "Your hp is: " << player->healthPoints << ".\n";
@@ -264,7 +286,7 @@ void Game::enemyEncounter(Enemy enemy) {
 			std::cin >> playerFleeResponse;
 
 			if (playerFleeResponse == "y") {
-				enemy.attackPlayer(*player);
+				enemy.attackPlayer(player);
 				std::cout << "You escaped.\n";
 				return;
 			}

@@ -16,7 +16,7 @@ public:
 	Enemy() = default;
 	~Enemy() = default;
 
-	void attackPlayer(Player player);
+	void attackPlayer(Player *player);
 	void death(Player player);
 
 	int healthPoints = 20;
