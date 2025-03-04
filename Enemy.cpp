@@ -4,9 +4,15 @@
 
 void Enemy::attackPlayer(Player *player) {
 	int randomHitChance = randomInt(0, 4);
+	int damageDone = baseDamage + randomInt(2, 4);
+
+	if (enemyPos.x > 8 || enemyPos.x < 4 || enemyPos.y > 8 || enemyPos.y < 4) {
+		level += 1;
+		randomHitChance = randomInt(0, 2);
+		damageDone = baseDamage + randomInt(3, 5);
+	}
 
 	if (randomHitChance == 0) {
-		int damageDone = baseDamage + randomInt(2, 4);
 		player->healthPoints -= damageDone;
 		std::cout << "The enemy attacked and landed it hit for: " << damageDone << ".\n";
 	} else {

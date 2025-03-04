@@ -43,7 +43,6 @@ void Game::run() {
 	std::cout << "Type 'play' to play DungeonGameTheGame.\n";
 	std::string reply;
 	std::cin >> reply;
-	reply[0] = std::tolower(reply[0]);
 
 	if (reply != "play") {
 		std::cout << "You didn't type 'play'. Goodbye!\n";
@@ -138,7 +137,7 @@ void Game::moveTurn() {
 		std::cout << "Type N, E, S, W to move in that direction. or C to cancel\n";
 		std::string playerMove;
 		std::cin >> playerMove;
-		playerMove[0] = std::tolower(playerMove[0]);
+		playerMove[0] = std::tolower(static_cast<unsigned char>(playerMove[0]));
 		std::cout << "\n";
 
 		if (playerMove == "n" && playerPos.y < 10) {
@@ -174,11 +173,17 @@ void Game::moveTurn() {
 		player->inventory.push_back(rooms[playerPos.x][playerPos.y].item);
 	}
 
+	bool itemInventoryCheck = false;
+
 	for (size_t i = 0; i < player->inventory.size(); ++i) {
-		if (rooms[playerPos.x][playerPos.y].item != nullptr && player->inventory[i]->id != rooms[playerPos.x][playerPos.y].item->id) {
-			player->inventory.push_back(rooms[playerPos.x][playerPos.y].item);
+		if (player->inventory[i] == rooms[playerPos.x][playerPos.y].item) {
+			itemInventoryCheck = true;
 			break;
 		}
+	}
+
+	if (itemInventoryCheck == false) {
+		player->inventory.push_back(rooms[playerPos.x][playerPos.y].item);
 	}
 
 	rooms[playerPos.x][playerPos.y].Description();
@@ -195,7 +200,7 @@ void Game::useTurn() {
 		std::cout << "Choose an item to use (type the item): sword, healthPotion, or lantern. type C to cancel\n";
 		std::string playerDecision;
 		std::cin >> playerDecision;
-		playerDecision[0] = std::tolower(playerDecision[0]);
+		playerDecision[0] = std::tolower(static_cast<unsigned char>(playerDecision[0]));
 
 		if (playerDecision == "c") { return; }
 
@@ -243,7 +248,7 @@ void Game::enemyEncounter(Enemy enemy) {
 		std::cout << "\nTheres an enemy in this room! attack it or leave! (A or L).\n";
 		std::string playerResponse;
 		std::cin >> playerResponse;
-		playerResponse[0] = std::tolower(playerResponse[0]);
+		playerResponse[0] = std::tolower(static_cast<unsigned char>(playerResponse[0]));
 
 		if (playerResponse == "l") {
 			enemy.attackPlayer(player);

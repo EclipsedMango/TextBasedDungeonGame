@@ -25,7 +25,7 @@ public:
 	int baseDamage = 2;
 	int level = 1;
 	int gold = 0;
-	int movesRemaining = 2;
+	int movesRemaining = 16;
 
 private:
 	std::vector<std::string> spells = {
