@@ -54,13 +54,14 @@ void Game::run() {
 
 	while (thingy) {
 		std::cout << "\n"
-			<< "Choose an action to do. type (1, 2, 3, 4, 5, or 6).\n"
+			<< "Choose an action to do. type (1, 2, 3, 4, 5, 6 or 7).\n"
 			<< "1: Move,\n"
 			<< "2: Use Item.\n"
 			<< "3: Open Inventory.\n"
 			<< "4: Open Map.\n"
 			<< "5: Check spells.\n"
-			<< "6: Leave dungeon.\n";
+			<< "6: Leave dungeon.\n"
+			<< "7: Check Stats.\n";
 
 		std::string playerDecision;
 		std::cin >> playerDecision;
@@ -105,6 +106,13 @@ void Game::run() {
 		if (playerDecision == "6") {
 			leaveDungeon();
 			return;
+		}
+
+		if (playerDecision == "7") {
+			std::cout << "Statistics:\n"
+				<< "Player level: " << player->level << "\n"
+				<< "Player HP: " << player->healthPoints << "\n"
+				<< "Player Damage: " << player->baseDamage << "\n";
 		}
 	}
 
