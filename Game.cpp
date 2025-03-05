@@ -130,13 +130,6 @@ void Game::run() {
 			leaveDungeon(false);
 			return;
 		}
-
-		if (playerDecision == "7") {
-			std::cout << "Statistics:\n"
-				<< "Player level: " << player->level << "\n"
-				<< "Player HP: " << player->healthPoints << "\n"
-				<< "Player Damage: " << player->baseDamage << "\n";
-		}
 	}
 }
 
