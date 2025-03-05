@@ -69,6 +69,7 @@ void Game::run() {
 		}
 
 		std::cout << "\n"
+
 			<< "Choose an action to do. type (1, 2, 3, 4, 5, 6, or 7).\n"
 			<< "1: Move.\n"
 			<< "2: Use Item.\n"
@@ -128,6 +129,13 @@ void Game::run() {
 		if (playerDecision == "7") {
 			leaveDungeon(false);
 			return;
+		}
+
+		if (playerDecision == "7") {
+			std::cout << "Statistics:\n"
+				<< "Player level: " << player->level << "\n"
+				<< "Player HP: " << player->healthPoints << "\n"
+				<< "Player Damage: " << player->baseDamage << "\n";
 		}
 	}
 }
