@@ -1,8 +1,5 @@
 ﻿#include "Game.h"
 
-#include "Enemy.h"
-#include "Util.h"
-
 using namespace std;
 
 Game::Game() {
@@ -61,6 +58,8 @@ void Game::run() {
 		<< "\nHP: " << player->healthPoints
 		<< "\nDamage: " << player->baseDamage << "\n";
 
+	rooms[playerPos.x][playerPos.y].playerHasVisited = true;
+
 	while (thingy) {
 		if (player->movesRemaining <= 0) {
 			std::cout << "\nYou ran of of moves.\n";
@@ -68,16 +67,17 @@ void Game::run() {
 			return;
 		}
 
-		std::cout << "\n"
+		std::cout << "\n";
+		drawMap();
 
-			<< "Choose an action to do. type (1, 2, 3, 4, 5, 6, or 7).\n"
+		std::cout << "\n"
+			<< "Choose an action to do. type (1, 2, 3, 4, 5, or 6).\n"
 			<< "1: Move.\n"
 			<< "2: Use Item.\n"
 			<< "3: Open Inventory.\n"
-			<< "4: Open Map.\n"
-			<< "5: Check spells.\n"
-			<< "6: Shows Stats.\n"
-			<< "7: Leave dungeon.\n";
+			<< "4: Check Spells.\n"
+			<< "5: Show Stats.\n"
+			<< "6: Leave Dungeon.\n";
 
 		std::string playerDecision;
 		std::cin >> playerDecision;
@@ -104,10 +104,6 @@ void Game::run() {
 		}
 
 		if (playerDecision == "4") {
-			drawMap();
-		}
-
-		if (playerDecision == "5") {
 			std::cout << "Type a spell to see if you have it.\n";
 			std::string playerReply;
 			std::cin >> playerReply;
@@ -119,14 +115,15 @@ void Game::run() {
 			}
 		}
 
-		if (playerDecision == "6") {
+		if (playerDecision == "5") {
 			std::cout << "Statistics:\n"
 				<< "Player level: " << player->level << "\n"
 				<< "Player HP: " << player->healthPoints << "\n"
 				<< "Player Damage: " << player->baseDamage << "\n";
 		}
 
-		if (playerDecision == "7") {
+		if (playerDecision == "6") {
+			std::cout << "\n";
 			leaveDungeon(false);
 			return;
 		}
@@ -141,26 +138,22 @@ void Game::moveTurn() {
 		playerMove[0] = std::tolower(static_cast<unsigned char>(playerMove[0]));
 		std::cout << "\n";
 
-		if (playerMove == "n" && playerPos.y < 10) {
-			player->movesRemaining -= 1;
+		if (playerMove == "n" && playerPos.y > 0) {
 			playerPos.y -= 1;
 			break;
 		}
 
 		if (playerMove == "e" && playerPos.x < 10) {
-			player->movesRemaining -= 1;
 			playerPos.x += 1;
 			break;
 		}
 
-		if (playerMove == "s" && playerPos.y > 0) {
-			player->movesRemaining -= 1;
+		if (playerMove == "s" && playerPos.y < 10) {
 			playerPos.y += 1;
 			break;
 		}
 
 		if (playerMove == "w" && playerPos.x > 0) {
-			player->movesRemaining -= 1;
 			playerPos.x -= 1;
 			break;
 		}
@@ -168,37 +161,44 @@ void Game::moveTurn() {
 		if (playerMove == "c") {return;}
 	}
 
+	player->movesRemaining -= 1;
 	std::cout << "Your new position is: " << playerPos.x << " " << playerPos.y << "\n";
 
-	if (player->inventory.empty() && rooms[playerPos.x][playerPos.y].item != nullptr) {
-		player->inventory.push_back(rooms[playerPos.x][playerPos.y].item);
-	}
-
-	bool itemInventoryCheck = false;
-
-	for (size_t i = 0; i < player->inventory.size(); ++i) {
-		if (player->inventory[i] == rooms[playerPos.x][playerPos.y].item) {
-			itemInventoryCheck = true;
-			break;
+	if (!rooms[playerPos.x][playerPos.y].playerHasVisited) {
+		if (player->inventory.empty() && rooms[playerPos.x][playerPos.y].item != nullptr) {
+			player->inventory.push_back(rooms[playerPos.x][playerPos.y].item);
 		}
-	}
 
-	if (itemInventoryCheck == false) {
-		player->inventory.push_back(rooms[playerPos.x][playerPos.y].item);
-	}
+		bool itemInventoryCheck = false;
 
-	rooms[playerPos.x][playerPos.y].Description();
-
-	for (int i = 0; i < enemies.size(); ++i) {
-		if (enemies[i]->enemyPos.x == playerPos.x && enemies[i]->enemyPos.y == playerPos.y) {
-			enemyEncounter(*enemies[i]);
+		for (int i = 0; i < player->inventory.size(); ++i) {
+			if (rooms[playerPos.x][playerPos.y].item != nullptr && player->inventory[i]->id == rooms[playerPos.x][playerPos.y].item->id) {
+				itemInventoryCheck = true;
+				break;
+			}
 		}
+
+		if (itemInventoryCheck == false && rooms[playerPos.x][playerPos.y].item != nullptr) {
+			player->inventory.push_back(rooms[playerPos.x][playerPos.y].item);
+		}
+
+		rooms[playerPos.x][playerPos.y].Description();
+
+		for (int i = 0; i < enemies.size(); ++i) {
+			if (enemies[i]->enemyPos.x == playerPos.x && enemies[i]->enemyPos.y == playerPos.y) {
+				enemyEncounter(*enemies[i]);
+			}
+		}
+
+		rooms[playerPos.x][playerPos.y].playerHasVisited = true;
+	} else {
+		std::cout << "You have visited this room already. Theres nothing to find.\n";
 	}
 }
 
 void Game::useTurn() {
 	while (true) {
-		std::cout << "Choose an item to use (type the item): sword, healthPotion, or lantern. type C to cancel\n";
+		std::cout << "Choose an item to use (type the item): sword, healthpotion, or lantern. type C to cancel\n";
 		std::string playerDecision;
 		std::cin >> playerDecision;
 		playerDecision[0] = std::tolower(static_cast<unsigned char>(playerDecision[0]));
@@ -249,15 +249,14 @@ void Game::enemyEncounter(Enemy enemy) {
 		std::cout << "\nTheres an enemy in this room! attack it or leave! (A or L).\n";
 		std::string playerResponse;
 		std::cin >> playerResponse;
-		playerResponse[0] = std::tolower(static_cast<unsigned char>(playerResponse[0]));
 
-		if (playerResponse == "l") {
+		if (playerResponse == "L") {
 			enemy.attackPlayer(player);
 			std::cout << "You escaped.\n";
 			return;
 		}
 
-		if (playerResponse == "a") {
+		if (playerResponse == "A") {
 			attackBool = true;
 		}
 
@@ -268,16 +267,18 @@ void Game::enemyEncounter(Enemy enemy) {
 			}
 
 			if (enemy.healthPoints <= 0) {
-				enemy.death(*player);
+				enemy.death(player);
 				return;
 			}
 
-			for (int i = 0; i < player->inventory.size(); ++i) {
-				if (player->inventory[i]->name == "sword") {
-					enemy.healthPoints -= player->inventory[i]->damage;
+			if (!player->inventory.empty()) {
+				for (int i = 0; i < player->inventory.size(); ++i) {
+					if (player->inventory[i]->name == "sword") {
+						enemy.healthPoints -= player->inventory[i]->damage;
 
-					player->inventory[i]->use();
-					break;
+						player->inventory[i]->use();
+						break;
+					}
 				}
 			}
 

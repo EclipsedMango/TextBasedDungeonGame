@@ -1,7 +1,9 @@
 #pragma once
 #include "Item.h"
-#include "Player.h"
 #include "Util.h"
+
+#include <vector>
+#include <iostream>
 
 class LanternItem : public Item {
 public:

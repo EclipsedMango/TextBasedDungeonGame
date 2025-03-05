@@ -1,10 +1,5 @@
 #include "HealthPotionItem.h"
 
-#include <iostream>
-#include <vector>
-
-#include "Util.h"
-
 HealthPotionItem::HealthPotionItem() {
 	this->id = randomInt(0, 10000);
 	this->name = "healthpotion";

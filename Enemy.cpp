@@ -1,7 +1,5 @@
 #include "Enemy.h"
 
-#include "Util.h"
-
 void Enemy::attackPlayer(Player *player) {
 	int randomHitChance = randomInt(0, 4);
 	int damageDone = baseDamage + randomInt(2, 4);
@@ -20,9 +18,9 @@ void Enemy::attackPlayer(Player *player) {
 	}
 }
 
-void Enemy::death(Player player) {
+void Enemy::death(Player* player) {
 	int randomGold = randomInt(5, 10) * level;
-	player.gold += randomGold;
+	player->gold += randomGold;
 	std::cout << "You killed an enemy and gained " << randomGold << " Gold.\n";
 }
 

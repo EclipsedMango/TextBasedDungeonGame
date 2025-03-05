@@ -1,19 +1,11 @@
 #include "SwordItem.h"
 
-#include <algorithm>
-#include <iostream>
-#include <string>
-#include <vector>
-
-#include "Util.h"
-
 SwordItem::SwordItem() {
 	this->id = randomInt(0, 10000);
 	this->name = "sword";
 	this->uses = randomInt(2, 5);
 	this->damage = randomInt(2, 6);
 }
-
 
 void SwordItem::description() const {
 	std::vector<std::string> descriptions = {

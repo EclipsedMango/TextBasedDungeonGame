@@ -1,9 +1,11 @@
 #pragma once
 
+#include "Util.h"
+#include "Item.h"
+
 #include <vector>
 #include <iostream>
-
-#include "Item.h"
+#include <algorithm>
 
 inline struct {
 	int x = 5;

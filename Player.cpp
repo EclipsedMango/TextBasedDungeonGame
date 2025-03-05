@@ -1,10 +1,5 @@
 #include "Player.h"
 
-#include <algorithm>
-#include <random>
-
-#include "Util.h"
-
 void Player::sortSpells() {
 	std::ranges::sort(allSpells);
 	std::ranges::sort(spells);

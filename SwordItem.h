@@ -1,7 +1,9 @@
 #pragma once
 #include "Item.h"
-#include "Player.h"
 #include "Util.h"
+
+#include <iostream>
+#include <vector>
 
 class SwordItem : public Item {
 public:

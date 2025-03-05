@@ -1,7 +1,5 @@
 #include "Room.h"
 
-#include <iostream>
-
 #include "Util.h"
 
 Room::Room(std::string description, Item *item) {

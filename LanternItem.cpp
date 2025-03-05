@@ -1,7 +1,5 @@
 #include "LanternItem.h"
 
-#include "Util.h"
-
 LanternItem::LanternItem() {
 	this->id = randomInt(0, 10000);
 	this->name = "lantern";
