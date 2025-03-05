@@ -11,6 +11,7 @@ SwordItem::SwordItem() {
 	this->id = randomInt(0, 10000);
 	this->name = "sword";
 	this->uses = randomInt(2, 5);
+	this->damage = randomInt(2, 6);
 }
 
 

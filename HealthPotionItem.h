@@ -6,6 +6,4 @@ public:
 	HealthPotionItem();
 	void description() const override;
 	void use() override;
-
-	bool used = false;
 };

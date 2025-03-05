@@ -8,6 +8,4 @@ public:
 	SwordItem();
 	void description() const override;
 	void use() override;
-
-	int damage = randomInt(2, 6);
 };
