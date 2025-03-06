@@ -13,7 +13,7 @@ Game::Game() {
 		for (int j = 0; j < roomColumn; ++j) {
 			int randomDescNum = randomInt(0, 9);
 			int roomHaveItem = randomInt(0, 2);
-			int randomItemNum = randomInt(0, 2);
+			int randomItemNum = randomInt(0, 3);
 
 			rooms[i][j].setDescription(descriptions[randomDescNum]);
 
@@ -204,7 +204,7 @@ void Game::moveTurn() {
 void Game::useTurn() {
 	while (true) {
 		std::cout << GRAY "Type an item to use it: "
-			BWHITE "sword, healthpotion, or lantern. " GRAY "type " BWHITE "C " GRAY "to cancel\n" WHITE;
+			BWHITE "sword, healthpotion, or lamp. " GRAY "type " BWHITE "C " GRAY "to cancel\n" WHITE;
 		std::string playerDecision;
 		std::cin >> playerDecision;
 		playerDecision[0] = std::tolower(static_cast<unsigned char>(playerDecision[0]));
@@ -213,14 +213,15 @@ void Game::useTurn() {
 
 		for (size_t i = 0; i < player->inventory.size(); ++i) {
 			if (playerDecision == player->inventory[i]->name) {
-				if (player->inventory[i]->uses == 0) {
+				if (player->inventory[i]->uses <= 0) {
 					std::cout << "You broke your item!\n";
 					player->inventory.erase(player->inventory.begin() + i);
+					return;
 				}
 
 				player->inventory[i]->use();
 
-				if (player->inventory[i]->name == "health") {
+				if (player->inventory[i]->name == "healthpotion") {
 					int healingAmount = randomInt(4, 8);
 					player->healthPoints += healingAmount;
 					std::cout << "You healed for " << healingAmount << ".\n";

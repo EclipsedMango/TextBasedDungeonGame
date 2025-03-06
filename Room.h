@@ -7,7 +7,7 @@
 class Room {
 public:
 	Room() = default;
-	Room(std::string description, Item* item);
+	Room(std::string descript, Item* item);
 	virtual ~Room();
 
 	void Description() const;
@@ -17,5 +17,5 @@ public:
 	bool playerHasVisited = false;
 
 private:
-	std::string descrip;
+	std::string description;
 };

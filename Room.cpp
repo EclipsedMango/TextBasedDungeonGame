@@ -2,8 +2,8 @@
 
 #include "Util.h"
 
-Room::Room(std::string description, Item *item) {
-	this->descrip = description;
+Room::Room(std::string descript, Item *item) {
+	this->description = descript;
 	this->item = item;
 }
 
@@ -12,7 +12,7 @@ Room::~Room() {
 }
 
 void Room::Description() const {
-	std::cout << descrip;
+	std::cout << description;
 
 	std::cout << "You found ";
 
@@ -25,7 +25,7 @@ void Room::Description() const {
 }
 
 void Room::setDescription(std::string descript) {
-	descrip = descript;
+	description = descript;
 }
 
 

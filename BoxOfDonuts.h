@@ -5,11 +5,11 @@
 #include <vector>
 #include <iostream>
 
-class LanternItem : public Item {
+class BoxOfDonuts : public Item {
 public:
-	LanternItem();
+	BoxOfDonuts();
 	void description() const override;
 	void use() override;
 
-	bool turnedOn = false;
+	int count = randomInt(2, 6);
 };

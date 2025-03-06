@@ -12,7 +12,7 @@ endif()
 project ("TextBasedDungeonGame")
 
 # Add source to this project's executable.
-add_executable (TextBasedDungeonGame "Game.cpp" "Game.h"  "Player.cpp" "Player.h" "Util.cpp" "Util.h" "Room.cpp" "Room.h" "Item.cpp" "Item.h" "SwordItem.cpp" "SwordItem.h" "HealthPotionItem.cpp" "HealthPotionItem.h" "LanternItem.cpp" "LanternItem.h" "Main.cpp" "Enemy.cpp" "Enemy.h")
+add_executable (TextBasedDungeonGame "Game.cpp" "Game.h"  "Player.cpp" "Player.h" "Util.cpp" "Util.h" "Room.cpp" "Room.h" "Item.cpp" "Item.h" "SwordItem.cpp" "SwordItem.h" "HealthPotionItem.cpp" "HealthPotionItem.h" "Lamp.cpp" "Lamp.h" "Main.cpp" "Enemy.cpp" "Enemy.h" "BoxOfDonuts.cpp" "BoxOfDonuts.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET TextBasedDungeonGame PROPERTY CXX_STANDARD 20)

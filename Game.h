@@ -5,9 +5,10 @@
 
 #include "Enemy.h"
 #include "HealthPotionItem.h"
-#include "LanternItem.h"
+#include "Lamp.h"
 #include "Room.h"
 #include "SwordItem.h"
+#include "BoxOfDonuts.h"
 #include "Util.h"
 
 class Game {
@@ -45,7 +46,8 @@ private:
 
 	std::vector<Item*> items = {
 		new HealthPotionItem(),
-		new LanternItem(),
-		new SwordItem()
+		new Lamp(),
+		new SwordItem(),
+		new BoxOfDonuts()
 	};
 };
