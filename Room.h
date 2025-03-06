@@ -8,7 +8,7 @@ class Room {
 public:
 	Room() = default;
 	Room(std::string descript, Item* item);
-	virtual ~Room();
+	virtual ~Room() = default;
 
 	void Description() const;
 	void setDescription(std::string descript);

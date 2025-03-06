@@ -9,10 +9,12 @@
 #include "Room.h"
 #include "SwordItem.h"
 #include "BoxOfDonuts.h"
+#include "Cat.h"
 #include "Util.h"
 
 class Game {
 public:
+	void CreationOfItem(Room& room);
 	void run();
 	void moveTurn();
 	void useTurn();
@@ -44,10 +46,5 @@ private:
 		"The room seems empty, further exploration is needed. "
 	};
 
-	std::vector<Item*> items = {
-		new HealthPotionItem(),
-		new Lamp(),
-		new SwordItem(),
-		new BoxOfDonuts()
-	};
+	std::vector<Item*> items = {};
 };

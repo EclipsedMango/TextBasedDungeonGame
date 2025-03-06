@@ -13,12 +13,12 @@ Game::Game() {
 		for (int j = 0; j < roomColumn; ++j) {
 			int randomDescNum = randomInt(0, 9);
 			int roomHaveItem = randomInt(0, 2);
-			int randomItemNum = randomInt(0, 3);
+			int randomItemNum = randomInt(0, 4);
 
 			rooms[i][j].setDescription(descriptions[randomDescNum]);
 
 			if (roomHaveItem == 1) {
-				rooms[i][j].item = items[randomItemNum];
+				CreationOfItem(rooms[i][j]);
 			} else {
 				rooms[i][j].item = nullptr;
 			}
@@ -26,9 +26,37 @@ Game::Game() {
 	}
 }
 
+void Game::CreationOfItem(Room& room) {
+	int randomItemNum = randomInt(1, 5);
+
+	switch (randomItemNum) {
+	case 1:
+		items.push_back(new SwordItem);
+		break;
+	case 2:
+		items.push_back(new HealthPotionItem);
+		break;
+	case 3:
+		items.push_back(new Lamp);
+		break;
+	case 4:
+		items.push_back(new BoxOfDonuts);
+		break;
+	case 5:
+		items.push_back(new Cat);
+		break;
+	}
+
+	room.item = items.back();
+}
+
 Game::~Game() {
 	for (int i = 0; i < enemies.size(); ++i) {
 		delete enemies[i];
+	}
+
+	for (int i = 0; i < items.size(); ++i) {
+		delete items[i];
 	}
 
 	delete player;
@@ -204,7 +232,7 @@ void Game::moveTurn() {
 void Game::useTurn() {
 	while (true) {
 		std::cout << GRAY "Type an item to use it: "
-			BWHITE "sword, healthpotion, or lamp. " GRAY "type " BWHITE "C " GRAY "to cancel\n" WHITE;
+			BWHITE "sword, healthpotion, lamp, boxofdonuts or cat. " GRAY "type " BWHITE "C " GRAY "to cancel\n" WHITE;
 		std::string playerDecision;
 		std::cin >> playerDecision;
 		playerDecision[0] = std::tolower(static_cast<unsigned char>(playerDecision[0]));

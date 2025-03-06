@@ -7,10 +7,6 @@ Room::Room(std::string descript, Item *item) {
 	this->item = item;
 }
 
-Room::~Room() {
-	delete[] item;
-}
-
 void Room::Description() const {
 	std::cout << description;
 
