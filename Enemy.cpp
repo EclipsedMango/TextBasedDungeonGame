@@ -12,15 +12,15 @@ void Enemy::attackPlayer(Player *player) {
 
 	if (randomHitChance == 0) {
 		player->healthPoints -= damageDone;
-		std::cout << "The enemy attacked and landed it hit for: " << damageDone << ".\n";
+		std::cout << GRAY "The enemy attacked and landed it hit for: " << RED << damageDone << WHITE ".\n";
 	} else {
-		std::cout << "The enemy attacked and missed.\n";
+		std::cout << GRAY "The enemy attacked and " DARKGREEN "missed.\n" WHITE;
 	}
 }
 
 void Enemy::death(Player* player) {
 	int randomGold = randomInt(5, 10) * level;
 	player->gold += randomGold;
-	std::cout << "You killed an enemy and gained " << randomGold << " Gold.\n";
+	std::cout << GRAY "You " DARKRED "killed " GRAY "an enemy and gained " GOLD << randomGold << " Gold.\n" WHITE;
 }
 

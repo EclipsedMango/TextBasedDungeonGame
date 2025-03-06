@@ -8,6 +8,7 @@
 #include "LanternItem.h"
 #include "Room.h"
 #include "SwordItem.h"
+#include "Util.h"
 
 class Game {
 public:
