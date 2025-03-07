@@ -1,4 +1,4 @@
 #include "Item.h"
 
-void Item::description() const {}
-void Item::use() {}
+void Item::Description() const {}
+void Item::Use() {}

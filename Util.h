@@ -15,4 +15,4 @@
 #define GOLD "\033[38;5;214m"
 #define PURPLE "\033[38;5;171m"
 
-int randomInt(int firstValue, int secondValue);
+int RandomInt(int firstValue, int secondValue);

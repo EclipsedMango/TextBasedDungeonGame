@@ -7,8 +7,8 @@ public:
 	Item() = default;
 	virtual ~Item() = default;
 
-	virtual void description() const;
-	virtual void use();
+	virtual void Description() const;
+	virtual void Use();
 
 	int id;
 	int uses;

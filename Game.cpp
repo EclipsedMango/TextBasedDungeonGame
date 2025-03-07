@@ -5,17 +5,17 @@ using namespace std;
 Game::Game() {
 	this->player = new Player;
 
-	for (int i = 0; i < randomInt(14, 24); ++i) {
+	for (int i = 0; i < RandomInt(14, 24); ++i) {
 		enemies.push_back(new Enemy);
 	}
 
 	for (int i = 0; i < roomRows; ++i) {
 		for (int j = 0; j < roomColumn; ++j) {
-			int randomDescNum = randomInt(0, 9);
-			int roomHaveItem = randomInt(0, 2);
-			int randomItemNum = randomInt(0, 4);
+			int randomDescNum = RandomInt(0, 9);
+			int roomHaveItem = RandomInt(0, 2);
+			int randomItemNum = RandomInt(0, 4);
 
-			rooms[i][j].setDescription(descriptions[randomDescNum]);
+			rooms[i][j].SetDescription(descriptions[randomDescNum]);
 
 			if (roomHaveItem == 1) {
 				CreationOfItem(rooms[i][j]);
@@ -27,7 +27,7 @@ Game::Game() {
 }
 
 void Game::CreationOfItem(Room& room) {
-	int randomItemNum = randomInt(1, 5);
+	int randomItemNum = RandomInt(1, 5);
 
 	switch (randomItemNum) {
 	case 1:
@@ -62,8 +62,8 @@ Game::~Game() {
 	delete player;
 }
 
-void Game::run() {
-	player->sortSpells();
+void Game::Run() {
+	player->SortSpells();
 
 	std::cout << "Type " << LIME << "play" << WHITE << " to play" << CYAN << " DungeonGameTheGame." << WHITE << "\n";
 	std::string reply;
@@ -91,17 +91,17 @@ void Game::run() {
 	while (thingy) {
 		if (player->movesRemaining <= 0) {
 			std::cout << "\nYou ran of of moves.\n";
-			leaveDungeon(false);
+			LeaveDungeon(false);
 			return;
 		}
 
 		if (player->healthPoints <= 0) {
-			leaveDungeon(true);
+			LeaveDungeon(true);
 			return;
 		}
 
 		std::cout << "\n";
-		drawMap();
+		DrawMap();
 
 		std::cout << "\n"
 			<< GRAY "Choose an action to do. type (" BWHITE "1, 2, 3, 4, 5, or 6" GRAY ").\n"
@@ -117,11 +117,11 @@ void Game::run() {
 		std::cout << "\n";
 
 		if (playerDecision == "1") {
-			moveTurn();
+			MoveTurn();
 		}
 
 		if (playerDecision == "2") {
-			useTurn();
+			UseTurn();
 		}
 
 		if (playerDecision == "3") {
@@ -142,7 +142,7 @@ void Game::run() {
 			std::string playerReply;
 			std::cin >> playerReply;
 
-			if (player->findSpell(playerReply)) {
+			if (player->FindSpell(playerReply)) {
 				std::cout << GRAY "You have " << WHITE << playerReply << ".\n";
 			} else {
 				std::cout << GRAY "You dont have " << WHITE << playerReply << ".\n";
@@ -157,13 +157,13 @@ void Game::run() {
 		}
 
 		if (playerDecision == "6") {
-			leaveDungeon(false);
+			LeaveDungeon(false);
 			return;
 		}
 	}
 }
 
-void Game::moveTurn() {
+void Game::MoveTurn() {
 	while (true) {
 		std::cout << GRAY "Type" BWHITE " N, E, S, W" GRAY " to move. or" BWHITE " C" GRAY" to cancel\n" WHITE;
 		std::string playerMove;
@@ -219,7 +219,7 @@ void Game::moveTurn() {
 
 		for (int i = 0; i < enemies.size(); ++i) {
 			if (enemies[i]->enemyPos.x == playerPos.x && enemies[i]->enemyPos.y == playerPos.y) {
-				enemyEncounter(*enemies[i]);
+				EnemyEncounter(*enemies[i]);
 			}
 		}
 
@@ -229,7 +229,7 @@ void Game::moveTurn() {
 	}
 }
 
-void Game::useTurn() {
+void Game::UseTurn() {
 	while (true) {
 		std::cout << GRAY "Type an item to use it: "
 			BWHITE "sword, healthpotion, lamp, boxofdonuts or cat. " GRAY "type " BWHITE "C " GRAY "to cancel\n" WHITE;
@@ -247,10 +247,10 @@ void Game::useTurn() {
 					return;
 				}
 
-				player->inventory[i]->use();
+				player->inventory[i]->Use();
 
 				if (player->inventory[i]->name == "healthpotion") {
-					int healingAmount = randomInt(4, 8);
+					int healingAmount = RandomInt(4, 8);
 					player->healthPoints += healingAmount;
 					std::cout << "You healed for " << healingAmount << ".\n";
 				}
@@ -263,7 +263,7 @@ void Game::useTurn() {
 	}
 }
 
-void Game::drawMap() {
+void Game::DrawMap() {
 
 	std::cout << "=================================\n";
 	for (int i = 0; i < roomColumn; ++i) {
@@ -286,7 +286,7 @@ void Game::drawMap() {
 	std::cout << WHITE "=================================\n";
 }
 
-void Game::enemyEncounter(Enemy enemy) {
+void Game::EnemyEncounter(Enemy enemy) {
 	bool attackBool = false;
 
 	while (true){
@@ -301,7 +301,7 @@ void Game::enemyEncounter(Enemy enemy) {
 		bool firstAttack = false;
 
 		if (playerResponse == "L") {
-			enemy.attackPlayer(player);
+			enemy.AttackPlayer(player);
 			std::cout << "You escaped.\n";
 			return;
 		}
@@ -317,7 +317,7 @@ void Game::enemyEncounter(Enemy enemy) {
 			}
 
 			if (enemy.healthPoints <= 0) {
-				enemy.death(player);
+				enemy.Death(player);
 				return;
 			}
 
@@ -328,7 +328,7 @@ void Game::enemyEncounter(Enemy enemy) {
 
 				if (playerFleeResponse == "y") {
 					std::cout << "\n";
-					enemy.attackPlayer(player);
+					enemy.AttackPlayer(player);
 					std::cout << GRAY "\nYou escaped.\n" WHITE;
 					return;
 				}
@@ -342,7 +342,7 @@ void Game::enemyEncounter(Enemy enemy) {
 				for (int i = 0; i < player->inventory.size(); ++i) {
 					if (player->inventory[i]->name == "sword") {
 						enemy.healthPoints -= player->inventory[i]->damage;
-						player->inventory[i]->use();
+						player->inventory[i]->Use();
 						break;
 					}
 				}
@@ -350,7 +350,7 @@ void Game::enemyEncounter(Enemy enemy) {
 
 			std::cout << "\n";
 			enemy.healthPoints -= player->baseDamage;
-			enemy.attackPlayer(player);
+			enemy.AttackPlayer(player);
 
 			std::cout << GRAY "\nYou attacked the enemy! its new hp is: " << LIGHTGREEN << enemy.healthPoints << GRAY ".\n";
 			std::cout << "Your hp is: " << LIGHTGREEN << player->healthPoints << GRAY ".\n" WHITE;
@@ -360,7 +360,7 @@ void Game::enemyEncounter(Enemy enemy) {
 	}
 }
 
-void Game::leaveDungeon(bool hasDied) {
+void Game::LeaveDungeon(bool hasDied) {
 	if (hasDied) {
 		std::cout << "You " << RED "died" << WHITE ".\n";
 	} else {

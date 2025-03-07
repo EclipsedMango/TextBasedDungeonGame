@@ -1,12 +1,12 @@
 #include "Cat.h"
 
 Cat::Cat() {
-	this->id = randomInt(0, 10000);
+	this->id = RandomInt(0, 10000);
 	this->name = "cat";
 	this->uses = 999;
 }
 
-void Cat::description() const {
+void Cat::Description() const {
 	std::vector<std::string> descriptions = {
 		"an orange cat",
 		"a small kitten",
@@ -15,10 +15,10 @@ void Cat::description() const {
 		"a cat"
 	};
 
-	std::cout << descriptions[randomInt(0, 4)] << "\n";
+	std::cout << descriptions[RandomInt(0, 4)] << "\n";
 }
 
-void Cat::use() {
+void Cat::Use() {
 	purring = !purring;
 
 	if (purring) {

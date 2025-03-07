@@ -8,6 +8,6 @@
 class SwordItem : public Item {
 public:
 	SwordItem();
-	void description() const override;
-	void use() override;
+	void Description() const override;
+	void Use() override;
 };

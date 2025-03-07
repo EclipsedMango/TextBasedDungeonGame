@@ -1,12 +1,12 @@
 #include "HealthPotionItem.h"
 
 HealthPotionItem::HealthPotionItem() {
-	this->id = randomInt(0, 10000);
+	this->id = RandomInt(0, 10000);
 	this->name = "healthpotion";
 	this->uses = 2;
 }
 
-void HealthPotionItem::description() const {
+void HealthPotionItem::Description() const {
 	std::vector<std::string> descriptions = {
 		"an old potent health potion.",
 		"a heal potion in pristine condition.",
@@ -15,10 +15,10 @@ void HealthPotionItem::description() const {
 		"a clean health potion"
 	};
 
-	std::cout << descriptions[randomInt(0, 4)] << "\n";
+	std::cout << descriptions[RandomInt(0, 4)] << "\n";
 }
 
-void HealthPotionItem::use() {
+void HealthPotionItem::Use() {
 	uses = std::max(uses - 1, 0);
 	std::cout << "You drank a health potion\n";
 }

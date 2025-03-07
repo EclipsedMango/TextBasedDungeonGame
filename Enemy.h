@@ -16,12 +16,12 @@ public:
 	Enemy() = default;
 	~Enemy() = default;
 
-	void attackPlayer(Player *player);
-	void death(Player *player);
+	void AttackPlayer(Player *player);
+	void Death(Player *player);
 
 	int healthPoints = 20;
 	int baseDamage = 2;
 	int level = 1;
 
-	EnemyPos enemyPos = {randomInt(1, 10), randomInt(1, 10) };
+	EnemyPos enemyPos = {RandomInt(1, 10), RandomInt(1, 10) };
 };

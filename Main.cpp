@@ -1,8 +1,8 @@
 #include "Game.h"
 
-int main() {
+int Main() {
 	Game* newGame = new Game;
-	newGame->run();
+	newGame->Run();
 
 	// Delay the closing and deletion of game and window.
 	int input;

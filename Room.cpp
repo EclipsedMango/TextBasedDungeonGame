@@ -13,14 +13,14 @@ void Room::Description() const {
 	std::cout << "You found ";
 
 	if (item != nullptr) {
-		item->description();
+		item->Description();
 	}
 	else {
 		std::cout << "Nothing.\n";
 	}
 }
 
-void Room::setDescription(std::string descript) {
+void Room::SetDescription(std::string descript) {
 	description = descript;
 }
 

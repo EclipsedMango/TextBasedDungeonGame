@@ -11,7 +11,7 @@ public:
 	virtual ~Room() = default;
 
 	void Description() const;
-	void setDescription(std::string descript);
+	void SetDescription(std::string descript);
 
 	Item* item;
 	bool playerHasVisited = false;

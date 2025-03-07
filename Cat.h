@@ -8,8 +8,8 @@
 class Cat : public Item {
 public:
 	Cat();
-	void description() const override;
-	void use() override;
+	void Description() const override;
+	void Use() override;
 
 	bool purring = false;
 };

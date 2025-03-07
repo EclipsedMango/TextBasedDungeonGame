@@ -1,12 +1,12 @@
 #include "Lamp.h"
 
 Lamp::Lamp() {
-	this->id = randomInt(0, 10000);
+	this->id = RandomInt(0, 10000);
 	this->name = "lamp";
-	this->uses = randomInt(1, 4);
+	this->uses = RandomInt(1, 4);
 }
 
-void Lamp::description() const {
+void Lamp::Description() const {
 	std::vector<std::string> descriptions{
 		"a rusty but reliable lamp.",
 		"an old bright lamp.",
@@ -15,10 +15,10 @@ void Lamp::description() const {
 		"a dull old flame sits inside the lamp."
 	};
 
-	std::cout << descriptions[randomInt(0, 4)] << "\n";
+	std::cout << descriptions[RandomInt(0, 4)] << "\n";
 }
 
-void Lamp::use() {
+void Lamp::Use() {
 	uses = std::max(uses - 1, 0);
 	turnedOn = !turnedOn;
 

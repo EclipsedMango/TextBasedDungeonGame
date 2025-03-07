@@ -8,8 +8,8 @@
 class Lamp : public Item {
 public:
 	Lamp();
-	void description() const override;
-	void use() override;
+	void Description() const override;
+	void Use() override;
 
 	bool turnedOn = false;
 };

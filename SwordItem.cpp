@@ -1,13 +1,13 @@
 #include "SwordItem.h"
 
 SwordItem::SwordItem() {
-	this->id = randomInt(0, 10000);
+	this->id = RandomInt(0, 10000);
 	this->name = "sword";
-	this->uses = randomInt(2, 5);
-	this->damage = randomInt(2, 6);
+	this->uses = RandomInt(2, 5);
+	this->damage = RandomInt(2, 6);
 }
 
-void SwordItem::description() const {
+void SwordItem::Description() const {
 	std::vector<std::string> descriptions = {
 		"a rusty steel sword.",
 		"an old knights sword.",
@@ -16,10 +16,10 @@ void SwordItem::description() const {
 		"a long sword."
 	};
 
-	std::cout << descriptions[randomInt(0, 4)] << "\n";
+	std::cout << descriptions[RandomInt(0, 4)] << "\n";
 }
 
-void SwordItem::use() {
+void SwordItem::Use() {
 	uses = std::max(uses - 1, 0);
 	std::cout << "You swung the sword at a ferocious speed.\n";
 }

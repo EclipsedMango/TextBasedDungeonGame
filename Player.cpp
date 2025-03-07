@@ -1,16 +1,16 @@
 #include "Player.h"
 
-void Player::sortSpells() {
+void Player::SortSpells() {
 	std::ranges::sort(allSpells);
 	std::ranges::sort(spells);
 }
 
-void Player::learnSpell() {
-	int spellNum = randomInt(0, 7);
+void Player::LearnSpell() {
+	int spellNum = RandomInt(0, 7);
 
 	const std::string& spellName = allSpells[spellNum];
 
-	if (!findSpell(spellName)) {
+	if (!FindSpell(spellName)) {
 		std::cout << "You learnt " << spellName << ".\n";
 		spells.push_back(spellName);
 	}
@@ -19,7 +19,7 @@ void Player::learnSpell() {
 	}
 }
 
-bool Player::findSpell(std::string spell) {
+bool Player::FindSpell(std::string spell) {
 	int low = 0;
 	int high = static_cast<int>(spells.size());
 

@@ -1,13 +1,13 @@
 #include "Enemy.h"
 
-void Enemy::attackPlayer(Player *player) {
-	int randomHitChance = randomInt(0, 4);
-	int damageDone = baseDamage + randomInt(2, 4);
+void Enemy::AttackPlayer(Player *player) {
+	int randomHitChance = RandomInt(0, 4);
+	int damageDone = baseDamage + RandomInt(2, 4);
 
 	if (enemyPos.x > 8 || enemyPos.x < 4 || enemyPos.y > 8 || enemyPos.y < 4) {
 		level += 1;
-		randomHitChance = randomInt(0, 2);
-		damageDone = baseDamage + randomInt(3, 5);
+		randomHitChance = RandomInt(0, 2);
+		damageDone = baseDamage + RandomInt(3, 5);
 	}
 
 	if (randomHitChance == 0) {
@@ -18,8 +18,8 @@ void Enemy::attackPlayer(Player *player) {
 	}
 }
 
-void Enemy::death(Player* player) {
-	int randomGold = randomInt(5, 10) * level;
+void Enemy::Death(Player* player) {
+	int randomGold = RandomInt(5, 10) * level;
 	player->gold += randomGold;
 	std::cout << GRAY "You " DARKRED "killed " GRAY "an enemy and gained " GOLD << randomGold << " Gold.\n" WHITE;
 }

@@ -15,12 +15,12 @@
 class Game {
 public:
 	void CreationOfItem(Room& room);
-	void run();
-	void moveTurn();
-	void useTurn();
-	void drawMap();
-	void enemyEncounter(Enemy enemy);
-	void leaveDungeon(bool hasDied);
+	void Run();
+	void MoveTurn();
+	void UseTurn();
+	void DrawMap();
+	void EnemyEncounter(Enemy enemy);
+	void LeaveDungeon(bool hasDied);
 
 	Game();
 	~Game();

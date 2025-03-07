@@ -17,9 +17,9 @@ public:
 	Player() = default;
 	~Player() = default;
 
-	void sortSpells();
-	void learnSpell();
-	bool findSpell(std::string spell);
+	void SortSpells();
+	void LearnSpell();
+	bool FindSpell(std::string spell);
 
 	std::vector<Item*> inventory;
 

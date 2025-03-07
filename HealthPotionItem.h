@@ -8,6 +8,6 @@
 class HealthPotionItem : public Item {
 public:
 	HealthPotionItem();
-	void description() const override;
-	void use() override;
+	void Description() const override;
+	void Use() override;
 };

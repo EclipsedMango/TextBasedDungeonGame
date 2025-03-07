@@ -8,8 +8,8 @@
 class BoxOfDonuts : public Item {
 public:
 	BoxOfDonuts();
-	void description() const override;
-	void use() override;
+	void Description() const override;
+	void Use() override;
 
-	int count = randomInt(2, 6);
+	int count = RandomInt(2, 6);
 };
