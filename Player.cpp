@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <cstring>
 
 void Player::SortSpells() {
 	std::ranges::sort(allSpells);
